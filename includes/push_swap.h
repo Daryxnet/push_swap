@@ -4,25 +4,24 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+// Definir la estructura para una pila (stack)
 typedef struct s_stack
 {
-    int             value;
-    struct s_stack  *next;
+    int             value;    // El valor que contiene el nodo
+    struct s_stack  *next;    // Puntero al siguiente nodo en la pila
 }   t_stack;
 
-// Operaciones
-void    sa(t_stack **stack);
-void    sb(t_stack **stack);
-void    pa(t_stack **a, t_stack **b);
-void    pb(t_stack **a, t_stack **b);
-void    ra(t_stack **stack);
-void    rb(t_stack **stack);
+// Declaraciones de funciones
 
-// Utilidades de la pila
-t_stack *stack_new(int value);
-void    stack_push(t_stack **stack, int value);
-int     stack_pop(t_stack **stack);
-int     stack_size(t_stack *stack);
+// Operaciones básicas de las pilas
+void    sa(t_stack **stack);  // Intercambia los dos primeros elementos de la pila
+void    pb(t_stack **a, t_stack **b);  // Mueve el primer elemento de `a` a `b`
+void    ra(t_stack **stack);  // Rota la pila
+
+// Funciones auxiliares
+t_stack *stack_new(int value);    // Crea un nuevo nodo de pila
+void    stack_push(t_stack **stack, int value);  // Añade un valor a la pila
+int     stack_pop(t_stack **stack);  // Elimina y devuelve el primer elemento de la pila
 
 #endif
 
