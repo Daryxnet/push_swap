@@ -6,7 +6,7 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:07:23 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/09 10:36:17 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:26:16 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,26 @@
 # include "../Libft/includes/get_next_line.h"
 # include "../Libft/includes/ft_printf.h"
 
-// Definir la estructura para una pila (stack)
-typedef struct s_stack
+typedef struct	s_stack
 {
-    int             value;    // El valor que contiene el nodo
-    struct s_stack  *next;    // Puntero al siguiente nodo en la pila
-}   t_stack;
+	int				value;
+	int				index;
+	struct s_stack	*next;
+}					t_stack;
 
 // Declaraciones de funciones
 
-// Operaciones básicas de las pilas
-void    sa(t_stack **stack);  // Intercambia los dos primeros elementos de la pila
-void    pb(t_stack **a, t_stack **b);  // Mueve el primer elemento de `a` a `b`
-void    ra(t_stack **stack);  // Rota la pila
+// Operaciones básicas de las stack
+int	swap(t_stack **stack);
+int	sa(t_stack **stack_a);
+int	sb(t_stack **stack_b);
 
 // Funciones auxiliares
-t_stack *stack_new(int value);    // Crea un nuevo nodo de pila
-void    stack_push(t_stack **stack, int value);  // Añade un valor a la pila
-int     stack_pop(t_stack **stack);  // Elimina y devuelve el primer elemento de la pila
+t_stack	*ft_lstnew(int value);
+void	ft_lstadd_front(t_stack **stack, t_stack *new);
+t_stack	*ft_lstlast(t_stack *head);
+void	ft_lstadd_back(t_stack **stack, t_stack *new);
+int		ft_lstsize(t_stack *head);
 
 #endif
 

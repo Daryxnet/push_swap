@@ -6,54 +6,45 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:09:15 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/09/23 11:09:17 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:24:07 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Intercambia los dos primeros elementos de la pila
-void sa(t_stack **stack)
+int	swap(t_stack **stack)
 {
-    t_stack *first;
-    t_stack *second;
+	t_stack	*head;
+	t_stack	*next;
+	int		val_tmp;
+	int		index_tmp;
 
-    if (!*stack || !(*stack)->next)
-        return ;
-    first = *stack;
-    second = first->next;
-    first->next = second->next;
-    second->next = first;
-    *stack = second;
+	if (ft_lstsize(*stack) < 2)
+		return (-1);
+	head = *stack;
+	next = head->next;
+	if (!head && !next)
+		ft_printf("Error swapping!\n");
+	val_tmp = head->value;
+	index_tmp = head->index;
+	next->value = val_tmp;
+	next->index = index_tmp;
+	return (0);
 }
 
-// Mueve el primer elemento de la pila `a` a la pila `b`
-void pb(t_stack **a, t_stack **b)
+int	sa(t_stack **stack_a)
 {
-    if (*a)
-    {
-        int value = stack_pop(a);  // Quita el primer elemento de la pila `a`
-        stack_push(b, value);      // Lo añade a la pila `b`
-    }
+	if (swap(stack_a) == -1)
+		return (-1);
+	ft_printf("sa");
+	return (0);
 }
 
-// Rota los elementos de la pila
-void ra(t_stack **stack)
+int	sb(t_stack **stack_b)
 {
-    t_stack *first;
-    t_stack *last;
-
-    if (!*stack || !(*stack)->next)
-        return ;
-
-    first = *stack;
-    *stack = first->next;
-
-    last = *stack;
-    while (last->next)
-        last = last->next;
-    
-    first->next = NULL;
-    last->next = first;
+	if (swap(stack_b) == -1)
+		return (-1);
+	ft_printf("sb");
+	return (0);
 }
 
