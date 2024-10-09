@@ -11,88 +11,143 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
+void print_stacks(t_stack *stack_a, t_stack *stack_b) {
+    printf("Stack A: ");
+    while (stack_a) {
+        printf("%d ", stack_a->value);
+        stack_a = stack_a->next;
+    }
+    printf("\nStack B: ");
+    while (stack_b) {
+        printf("%d ", stack_b->value);
+        stack_b = stack_b->next;
+    }
+    printf("\n");
+}
 
-/*int main(int argc, char **argv)
-{
-    t_list *stack_a = NULL;
-    t_list *stack_b = NULL;
-    int i;
+int main() {
+    t_stack *stack_a = NULL;
+    t_stack *stack_b = NULL;
 
-    if (argc < 2)
-        return (1);  // Si no hay suficientes argumentos, salir
+    // Inicializar stacks A y B
+    ft_lstadd_back(&stack_a, ft_lstnew(2));
+    ft_lstadd_back(&stack_a, ft_lstnew(1));
+    ft_lstadd_back(&stack_a, ft_lstnew(3));
+    ft_lstadd_back(&stack_a, ft_lstnew(6));
+    ft_lstadd_back(&stack_a, ft_lstnew(5));
+    ft_lstadd_back(&stack_a, ft_lstnew(8));
 
-    // Insertar argumentos en la pila A
-    i = 1;
-    while (i < argc)
-        stack_push(&stack_a, atoi(argv[i++]));
+    printf("Init a and b:\n");
+    print_stacks(stack_a, stack_b);
+    printf("----------------------------------------------------------------------------------------------------------\n");
 
-    // Aquí puedes hacer operaciones sobre las pilas
-    ft_printf("Pila A inicial:\n");
-    print_stack(stack_a);
+    // Ejecutar sa
+    sa(&stack_a);
+    printf("Exec sa:\n");
+    print_stacks(stack_a, stack_b);
+    printf("----------------------------------------------------------------------------------------------------------\n");
 
-    sa(&stack_a);  // Ejemplo: intercambiar los dos primeros elementos
-    pb(&stack_a, &stack_b);  // Mover de A a B
-    ra(&stack_a);  // Rotar pila A
+    // Ejecutar pb pb pb
+    pb(&stack_a, &stack_b);
+    pb(&stack_a, &stack_b);
+    pb(&stack_a, &stack_b);
+    printf("Exec pb pb pb:\n");
+    print_stacks(stack_a, stack_b);
+    printf("----------------------------------------------------------------------------------------------------------\n");
 
-    ft_printf("\nPila A después de las operaciones:\n");
-    print_stack(stack_a);
-    ft_printf("\nPila B:\n");
-    print_stack(stack_b);
+    // Ejecutar ra rb (equiv. to rr)
+    ra(&stack_a);
+    rb(&stack_b);
+    printf("Exec ra rb (equiv. to rr):\n");
+    print_stacks(stack_a, stack_b);
+    printf("----------------------------------------------------------------------------------------------------------\n");
 
-    return (0);
-}*/
+    // Ejecutar rra rrb (equiv. to rrr)
+    rra(&stack_a);
+    rrb(&stack_b);
+    printf("Exec rra rrb (equiv. to rrr):\n");
+    print_stacks(stack_a, stack_b);
+    printf("----------------------------------------------------------------------------------------------------------\n");
 
+    // Ejecutar sa
+    sa(&stack_a);
+    printf("Exec sa:\n");
+    print_stacks(stack_a, stack_b);
+    printf("----------------------------------------------------------------------------------------------------------\n");
+
+    // Ejecutar pa pa pa
+    pa(&stack_a, &stack_b);
+    pa(&stack_a, &stack_b);
+    pa(&stack_a, &stack_b);
+    printf("Exec pa pa pa:\n");
+    print_stacks(stack_a, stack_b);
+    printf("----------------------------------------------------------------------------------------------------------\n");
+
+    // Liberar memoria
+    while (stack_a) {
+        t_stack *temp = stack_a;
+        stack_a = stack_a->next;
+        free(temp);
+    }
+    while (stack_b) {
+        t_stack *temp = stack_b;
+        stack_b = stack_b->next;
+        free(temp);
+    }
+
+    return 0;
+}
+/*
 // Función para imprimir los valores de una pila (para verificar el contenido)
-void	print_stack(t_stack *stack, char *stack_name)
+void	print_stack(t_stack *stack)
 {
-	ft_printf("Valores en la %s: ", stack_name);
-	while (stack)
+	t_stack *current = stack;
+	while (current)
 	{
-		ft_printf("%d ", stack->value);
-		stack = stack->next;
+		ft_printf("%d ", current->value);
+		current = current->next;
 	}
 	ft_printf("\n");
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	t_stack	*stack_a = NULL;
-	t_stack	*stack_b = NULL;
-	t_stack	*new_node;
+	t_stack *stack_a = NULL;
+	t_stack *stack_b = NULL;
+	int i = 1;
 
-	// Agregamos algunos valores a la pila A
-	new_node = ft_lstnew(10);
-	ft_lstadd_back(&stack_a, new_node);  // stack_a -> [10]
-	new_node = ft_lstnew(20);
-	ft_lstadd_back(&stack_a, new_node);  // stack_a -> [10] -> [20]
-	new_node = ft_lstnew(30);
-	ft_lstadd_back(&stack_a, new_node);  // stack_a -> [10] -> [20] -> [30]
+	// Crear el stack_a desde los argumentos
+	while (i < argc)
+	{
+		int value = atoi(argv[i]);  // Convertir argumento a entero
+		t_stack *new_node = ft_lstnew(value);
+		ft_lstadd_back(&stack_a, new_node);
+		i++;
+	}
 
-	// Agregamos algunos valores a la pila B
-	new_node = ft_lstnew(40);
-	ft_lstadd_back(&stack_b, new_node);  // stack_b -> [40]
-	new_node = ft_lstnew(50);
-	ft_lstadd_back(&stack_b, new_node);  // stack_b -> [40] -> [50]
-	new_node = ft_lstnew(60);
-	ft_lstadd_back(&stack_b, new_node);  // stack_b -> [40] -> [50] -> [60]
+	// Imprimir el stack inicial
+	ft_printf("Stack A: ");
+	print_stack(stack_a);
 
-	// Mostramos las pilas antes de realizar los swaps
-	print_stack(stack_a, "pila A");  // Debería mostrar: 10 20 30
-	print_stack(stack_b, "pila B");  // Debería mostrar: 40 50 60
+	// Aplicar algunas operaciones
+	sa(&stack_a);  // Swap los dos primeros elementos de stack_a
+	ft_printf("Después de sa: ");
+	print_stack(stack_a);
 
-	// Aplicamos sa (swap en la pila A)
-	sa(&stack_a);
-	print_stack(stack_a, "pila A después de sa");  // Debería mostrar: 20 10 30
+	sb(&stack_b);  // Swap no tendrá efecto porque stack_b está vacío
+	ft_printf("Stack B (sin cambios): ");
+	print_stack(stack_b);
 
-	// Aplicamos sb (swap en la pila B)
-	sb(&stack_b);
-	print_stack(stack_b, "pila B después de sb");  // Debería mostrar: 50 40 60
+	push(&stack_b, &stack_a); // Mueve el primer elemento de stack_a a stack_b
+	ft_printf("Stack A después de pb: ");
+	print_stack(stack_a);
+	ft_printf("Stack B después de pb: ");
+	print_stack(stack_b);
 
-	// Aplicamos swap directamente en la pila A nuevamente
-	swap(&stack_a);
-	print_stack(stack_a, "pila A después de otro swap");  // Debería mostrar: 10 20 30 (restaurado)
+	// Limpiar memoria (opcional, depende de tu implementación de free)
+	// Aquí podrías liberar la memoria de tus stacks si lo deseas
 
-	return (0);
-}
-
+	return 0;
+}*/

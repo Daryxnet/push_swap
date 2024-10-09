@@ -27,6 +27,8 @@ int	swap(t_stack **stack)
 		ft_printf("Error swapping!\n");
 	val_tmp = head->value;
 	index_tmp = head->index;
+	head->value = next->value;
+	head->index = next->index;
 	next->value = val_tmp;
 	next->index = index_tmp;
 	return (0);
@@ -48,3 +50,152 @@ int	sb(t_stack **stack_b)
 	return (0);
 }
 
+int	ss(t_stack **stack_a, t_stack **stack_b)
+{	
+	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
+		return (-1);
+	swap(stack_a);
+	swap(stack_b);
+	ft_printf("ss");
+	return (0);
+}
+
+// Takes the first element of one stack and puts it at the top of another | pa and pb
+
+int	push(t_stack **stack_to, t_stack **stack_from)
+{
+	t_stack	*tmp;
+	t_stack	*head_to;
+	t_stack	*head_from;
+
+	if (ft_lstsize(*stack_from) == 0)
+		return (-1);
+	head_to = *stack_to;
+	head_from = *stack_from;
+	tmp = head_from;
+	head_from = head_from->next;
+	*stack_from = head_from;
+	if (!head_to)
+	{
+		head_to = tmp;
+		head_to->next = NULL;
+		*stack_to = head_to;
+	}
+	else
+	{
+		tmp->next = head_to;
+		*stack_to = tmp;
+	}
+	return (0);
+}
+
+int	pa(t_stack **stack_a, t_stack **stack_b)
+{
+	if (push(stack_a, stack_b) == -1)
+		return (-1);
+	ft_printf("pa");
+	return (0);
+}
+
+int	pb(t_stack **stack_a, t_stack **stack_b)
+{
+	if (push(stack_b, stack_a) == -1)
+		return (-1);
+	ft_printf("pb");
+	return (0);
+}
+
+// Shift up all elements of a stack by 1. The first element becomes the last one | ra and rb
+
+int	rotate(t_stack **stack)
+{
+	t_stack	*head;
+	t_stack	*tail;
+
+	if (ft_lstsize(*stack) < 2)
+		return (-1);
+	head = *stack;
+	tail = ft_lstlast(head);
+	*stack = head->next;
+	head->next = NULL;
+	tail->next = head;
+	return (0);
+}
+
+int	ra(t_stack **stack_a)
+{
+	if (rotate(stack_a) == -1)
+		return (-1);
+	ft_printf("ra");
+	return (0);
+}
+
+int	rb(t_stack **stack_b)
+{
+	if (rotate(stack_b) == -1)
+		return (-1);
+	ft_printf("rb");
+	return (0);
+}
+
+int	rr(t_stack **stack_a, t_stack **stack_b)
+{
+	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
+		return (-1);
+	rotate(stack_a);
+	rotate(stack_b);
+	ft_printf("rr");
+	return (0);
+}
+
+
+// Shifts down all elements of a stack by 1. The last element becomes the first one | rra and rrb
+
+int	reverseRotate(t_stack **stack)
+{
+	t_stack	*head;
+	t_stack	*tail;
+
+	if (ft_lstsize(*stack) < 2)
+		return (-1);
+	head = *stack;
+	tail = ft_lstlast(head);
+	while (head)
+	{
+		if (head->next->next == NULL)
+		{
+			 head->next = NULL;
+			 break ;
+		}
+		head = head->next;
+	}
+	tail->next = *stack;
+	*stack = tail;
+	return (0);
+}
+
+int	rra(t_stack **stack_a)
+{
+	if (reverseRotate(stack_a) == -1)
+		return (-1);
+	ft_printf("rra");
+	return (0);
+}
+
+int	rrb(t_stack **stack_b)
+{
+	if (reverseRotate(stack_b) == -1)
+		return (-1);
+	ft_printf("rrb");
+	return (0);
+}
+
+int	rrr(t_stack **stack_a, t_stack **stack_b)
+{
+	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
+		return (-1);
+	reverseRotate(stack_a);
+	reverseRotate(stack_b);
+	ft_printf("rrr");
+	return (0);
+}

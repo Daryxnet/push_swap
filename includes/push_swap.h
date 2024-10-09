@@ -27,11 +27,24 @@ typedef struct	s_stack
 }					t_stack;
 
 // Declaraciones de funciones
+void    print_stack(t_stack *stack);
 
 // Operaciones básicas de las stack
 int	swap(t_stack **stack);
 int	sa(t_stack **stack_a);
 int	sb(t_stack **stack_b);
+int	ss(t_stack **stack_a, t_stack **stack_b);
+int	push(t_stack **stack_to, t_stack **stack_from);
+int	pa(t_stack **stack_a, t_stack **stack_b);
+int	pb(t_stack **stack_a, t_stack **stack_b);
+int	rotate(t_stack **stack);
+int	ra(t_stack **stack_a);
+int	rb(t_stack **stack_b);
+int	rr(t_stack **stack_a, t_stack **stack_b);
+int	reverseRotate(t_stack **stack);
+int	rra(t_stack **stack_a);
+int	rrb(t_stack **stack_b);
+int	rrr(t_stack **stack_a, t_stack **stack_b);
 
 // Funciones auxiliares
 t_stack	*ft_lstnew(int value);
