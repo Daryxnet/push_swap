@@ -6,7 +6,7 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 14:35:11 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/09/07 19:35:58 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:40:22 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_read_static_str(int fd, char *static_str)
 	if (!buff)
 		return (NULL);
 	rt_bytes = 1;
-	while (!ft_strchr(static_str, '\n') && rt_bytes != 0)
+	while (!ft_strchr_gnl(static_str, '\n') && rt_bytes != 0)
 	{
 		rt_bytes = read(fd, buff, BUFFER_SIZE);
 		if (rt_bytes == -1)
@@ -34,7 +34,7 @@ char	*ft_read_static_str(int fd, char *static_str)
 			return (NULL);
 		}
 		buff[rt_bytes] = '\0';
-		static_str = ft_strjoin(static_str, buff);
+		static_str = ft_strjoin_gnl(static_str, buff);
 	}
 	free(buff);
 	return (static_str);

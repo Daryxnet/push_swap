@@ -1,8 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/23 11:07:23 by dagarmil          #+#    #+#             */
+/*   Updated: 2024/10/09 10:36:17 by dagarmil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
 # include <unistd.h>
+# include "../Libft/includes/libft.h"
+# include "../Libft/includes/get_next_line.h"
+# include "../Libft/includes/ft_printf.h"
 
 // Definir la estructura para una pila (stack)
 typedef struct s_stack

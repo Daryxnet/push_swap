@@ -6,14 +6,14 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:07:28 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/06/21 14:34:07 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:58:38 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 //#include <stdio.h>
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+/*void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	unsigned int	i;
 
@@ -24,7 +24,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		i++;
 	}
 	return (dest);
-}
+}*/
 /*
 int	main(int ac, char **av)
 {
@@ -40,3 +40,18 @@ int	main(int ac, char **av)
 	}
 	return 0;
 }*/
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (!dst && !src)
+		return (NULL);
+	while (i < n)
+	{
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dst);
+}

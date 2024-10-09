@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/23 11:09:02 by dagarmil          #+#    #+#             */
+/*   Updated: 2024/09/24 12:21:46 by dagarmil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-#include <stdio.h>  // Solo para pruebas, para imprimir la pila
 
 // Función auxiliar para imprimir el estado de la pila (debugging)
 void print_stack(t_stack *stack)
 {
     while (stack)
     {
-        printf("%d\n", stack->value);
+        ft_printf("%d\n", stack->value);
         stack = stack->next;
     }
 }
@@ -26,16 +37,16 @@ int main(int argc, char **argv)
         stack_push(&stack_a, atoi(argv[i++]));
 
     // Aquí puedes hacer operaciones sobre las pilas
-    printf("Pila A inicial:\n");
+    ft_printf("Pila A inicial:\n");
     print_stack(stack_a);
 
     sa(&stack_a);  // Ejemplo: intercambiar los dos primeros elementos
     pb(&stack_a, &stack_b);  // Mover de A a B
     ra(&stack_a);  // Rotar pila A
 
-    printf("\nPila A después de las operaciones:\n");
+    ft_printf("\nPila A después de las operaciones:\n");
     print_stack(stack_a);
-    printf("\nPila B:\n");
+    ft_printf("\nPila B:\n");
     print_stack(stack_b);
 
     return (0);

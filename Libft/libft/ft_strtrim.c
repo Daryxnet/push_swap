@@ -6,12 +6,26 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:48:13 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/07/10 20:06:43 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:06:29 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	size_t	i;
+
+	if (!s1 || !set)
+		return (NULL);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	i = ft_strlen(s1);
+	while (i && ft_strchr(set, s1[i]))
+		i--;
+	return (ft_substr(s1, 0, i + 1));
+}
+/*
 int	get_start(const char *s1, const char *set)
 {
 	size_t	len;
@@ -61,7 +75,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	ft_strlcpy(newstr, s1 + start, end - start + 1);
 	return (newstr);
-}
+}*/
 /*
 char	*ft_strtrim(char const *s1, char const *set)
 {

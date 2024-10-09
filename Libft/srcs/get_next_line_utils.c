@@ -6,13 +6,13 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 14:35:56 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/08/19 14:56:59 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:43:35 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen_gnl(char *str)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strchr(char *str, int c)
+char	*ft_strchr_gnl(char *str, int c)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ char	*ft_strchr(char *str, int c)
 	if (!str)
 		return (NULL);
 	if (c == '\0')
-		return ((char *)&str[ft_strlen(str)]);
+		return ((char *)&str[ft_strlen_gnl(str)]);
 	while (str[i] != '\0')
 	{
 		if (str[i] == (char) c)
@@ -42,7 +42,7 @@ char	*ft_strchr(char *str, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, char *buff)
+char	*ft_strjoin_gnl(char *s1, char *buff)
 {
 	size_t	i;
 	size_t	j;
@@ -55,7 +55,8 @@ char	*ft_strjoin(char *s1, char *buff)
 	}
 	if (!s1 || !buff)
 		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(buff)) + 1));
+	str = malloc(sizeof(char) * \
+			((ft_strlen_gnl(s1) + ft_strlen_gnl(buff)) + 1));
 	if (!str)
 		return (NULL);
 	i = -1;
@@ -65,7 +66,7 @@ char	*ft_strjoin(char *s1, char *buff)
 			str[i] = s1[i];
 	while (buff[j] != '\0')
 		str[i++] = buff[j++];
-	str[ft_strlen(s1) + ft_strlen(buff)] = '\0';
+	str[ft_strlen_gnl(s1) + ft_strlen_gnl(buff)] = '\0';
 	free(s1);
 	return (str);
 }
@@ -112,7 +113,7 @@ char	*ft_new_static_str(char *static_str)
 		free(static_str);
 		return (NULL);
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(static_str) - i + 1));
+	str = (char *)malloc(sizeof(char) * (ft_strlen_gnl(static_str) - i + 1));
 	if (!str)
 		return (NULL);
 	i++;

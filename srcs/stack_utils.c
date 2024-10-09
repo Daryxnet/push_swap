@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/23 11:09:38 by dagarmil          #+#    #+#             */
+/*   Updated: 2024/09/23 11:09:41 by dagarmil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 // Crea un nuevo nodo con un valor
@@ -36,4 +48,3 @@ int stack_pop(t_stack **stack)
     free(temp);
     return (value);
 }
-
