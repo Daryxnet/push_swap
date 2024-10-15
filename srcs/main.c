@@ -5,149 +5,71 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 11:09:02 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/09 16:34:33 by dagarmil         ###   ########.fr       */
+/*   Created: 2024/10/15 11:40:12 by dagarmil          #+#    #+#             */
+/*   Updated: 2024/10/15 12:42:43 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-void print_stacks(t_stack *stack_a, t_stack *stack_b) {
-    printf("Stack A: ");
-    while (stack_a) {
-        printf("%d ", stack_a->value);
-        stack_a = stack_a->next;
-    }
-    printf("\nStack B: ");
-    while (stack_b) {
-        printf("%d ", stack_b->value);
-        stack_b = stack_b->next;
-    }
-    printf("\n");
-}
-
-int main() {
-    t_stack *stack_a = NULL;
-    t_stack *stack_b = NULL;
-
-    // Inicializar stacks A y B
-    ft_lstadd_back(&stack_a, ft_lstnew(2));
-    ft_lstadd_back(&stack_a, ft_lstnew(1));
-    ft_lstadd_back(&stack_a, ft_lstnew(3));
-    ft_lstadd_back(&stack_a, ft_lstnew(6));
-    ft_lstadd_back(&stack_a, ft_lstnew(5));
-    ft_lstadd_back(&stack_a, ft_lstnew(8));
-
-    printf("Init a and b:\n");
-    print_stacks(stack_a, stack_b);
-    printf("----------------------------------------------------------------------------------------------------------\n");
-
-    // Ejecutar sa
-    sa(&stack_a);
-    printf("Exec sa:\n");
-    print_stacks(stack_a, stack_b);
-    printf("----------------------------------------------------------------------------------------------------------\n");
-
-    // Ejecutar pb pb pb
-    pb(&stack_a, &stack_b);
-    pb(&stack_a, &stack_b);
-    pb(&stack_a, &stack_b);
-    printf("Exec pb pb pb:\n");
-    print_stacks(stack_a, stack_b);
-    printf("----------------------------------------------------------------------------------------------------------\n");
-
-    // Ejecutar ra rb (equiv. to rr)
-    ra(&stack_a);
-    rb(&stack_b);
-    printf("Exec ra rb (equiv. to rr):\n");
-    print_stacks(stack_a, stack_b);
-    printf("----------------------------------------------------------------------------------------------------------\n");
-
-    // Ejecutar rra rrb (equiv. to rrr)
-    rra(&stack_a);
-    rrb(&stack_b);
-    printf("Exec rra rrb (equiv. to rrr):\n");
-    print_stacks(stack_a, stack_b);
-    printf("----------------------------------------------------------------------------------------------------------\n");
-
-    // Ejecutar sa
-    sa(&stack_a);
-    printf("Exec sa:\n");
-    print_stacks(stack_a, stack_b);
-    printf("----------------------------------------------------------------------------------------------------------\n");
-
-    // Ejecutar pa pa pa
-    pa(&stack_a, &stack_b);
-    pa(&stack_a, &stack_b);
-    pa(&stack_a, &stack_b);
-    printf("Exec pa pa pa:\n");
-    print_stacks(stack_a, stack_b);
-    printf("----------------------------------------------------------------------------------------------------------\n");
-
-    // Liberar memoria
-    while (stack_a) {
-        t_stack *temp = stack_a;
-        stack_a = stack_a->next;
-        free(temp);
-    }
-    while (stack_b) {
-        t_stack *temp = stack_b;
-        stack_b = stack_b->next;
-        free(temp);
-    }
-
-    return 0;
-}
-/*
-// Función para imprimir los valores de una pila (para verificar el contenido)
-void	print_stack(t_stack *stack)
+static void	init_stack(t_stack **stack, int argc, char **argv)
 {
-	t_stack *current = stack;
-	while (current)
+	t_stack	*new;
+	char	**args;
+	int		i;
+
+	i = 0;
+	if (argc == 2)
+		args = ft_split(argv[1], ' ');
+	else
 	{
-		ft_printf("%d ", current->value);
-		current = current->next;
+		i = 1;
+		args = argv;
 	}
-	ft_printf("\n");
+	while (args[i])
+	{
+		new = ft_lstnew(ft_atoi(args[i]));
+		ft_lstadd_back(stack, new);
+		i++;
+	}
+	index_stack(stack);
+	if (argc == 2)
+		ft_free(args);
+}
+
+static void	sort_stack(t_stack **stack_a, t_stack **stack_b)
+{
+	if (ft_lstsize(*stack_a) <= 5)
+		sort_small_stack(stack_a, stack_b);
+	else
+		radix_sort(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack *stack_a = NULL;
-	t_stack *stack_b = NULL;
-	int i = 1;
+	t_stack	**stack_a;
+	t_stack	**stack_b;
 
-	// Crear el stack_a desde los argumentos
-	while (i < argc)
+	if (argc < 2)
+		return (-1);
+	ft_check_args(argc, argv);
+	stack_a = (t_stack **)malloc(sizeof(t_stack));
+	stack_b = (t_stack **)malloc(sizeof(t_stack));
+	*stack_a = NULL;
+	*stack_b = NULL;
+	init_stack(stack_a, argc, argv);
+	
+	print_stacks(*stack_a, *stack_b);
+	if (is_in_order(stack_a))
 	{
-		int value = atoi(argv[i]);  // Convertir argumento a entero
-		t_stack *new_node = ft_lstnew(value);
-		ft_lstadd_back(&stack_a, new_node);
-		i++;
+		free_stack(stack_a);
+		free_stack(stack_b);
+		return (0);
 	}
-
-	// Imprimir el stack inicial
-	ft_printf("Stack A: ");
-	print_stack(stack_a);
-
-	// Aplicar algunas operaciones
-	sa(&stack_a);  // Swap los dos primeros elementos de stack_a
-	ft_printf("Después de sa: ");
-	print_stack(stack_a);
-
-	sb(&stack_b);  // Swap no tendrá efecto porque stack_b está vacío
-	ft_printf("Stack B (sin cambios): ");
-	print_stack(stack_b);
-
-	push(&stack_b, &stack_a); // Mueve el primer elemento de stack_a a stack_b
-	ft_printf("Stack A después de pb: ");
-	print_stack(stack_a);
-	ft_printf("Stack B después de pb: ");
-	print_stack(stack_b);
-
-	// Limpiar memoria (opcional, depende de tu implementación de free)
-	// Aquí podrías liberar la memoria de tus stacks si lo deseas
-
-	return 0;
-}*/
+	sort_stack(stack_a, stack_b);
+	print_stacks(*stack_a, *stack_b);
+	free_stack(stack_a);
+	free_stack(stack_b);
+	return (0);
+}

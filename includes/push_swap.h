@@ -6,7 +6,7 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:07:23 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/09 16:26:16 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/15 12:40:27 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,15 @@ typedef struct	s_stack
 }					t_stack;
 
 // Declaraciones de funciones
-void    print_stack(t_stack *stack);
+void    print_stacks(t_stack *stack_a, t_stack *stacck_b);
+void	ft_check_args(int argc, char **argv);
+void	index_stack(t_stack **stack);
+int		is_in_order(t_stack **stack);
+void	ft_free(char **str);
+void	free_stack(t_stack **stack);
+void	sort_small_stack(t_stack **stack_a, t_stack **stack_b);
+void	radix_sort(t_stack **stack_a, t_stack **stack_b);
+int		get_distance(t_stack **stack, int index);
 
 // Operaciones básicas de las stack
 int	swap(t_stack **stack);
