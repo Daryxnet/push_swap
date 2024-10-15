@@ -6,7 +6,7 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:40:12 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/15 12:42:43 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:50:05 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	main(int argc, char **argv)
 	*stack_a = NULL;
 	*stack_b = NULL;
 	init_stack(stack_a, argc, argv);
-	
 	print_stacks(*stack_a, *stack_b);
 	if (is_in_order(stack_a))
 	{
