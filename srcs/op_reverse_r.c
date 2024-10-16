@@ -28,7 +28,7 @@ int	rra(t_stack **stack_a)
 {
 	if (reverse_rotate(stack_a) == -1)
 		return (-1);
-	ft_printf("rra");
+	ft_printf("rra\n");
 	return (0);
 }
 
@@ -36,7 +36,7 @@ int	rrb(t_stack **stack_b)
 {
 	if (reverse_rotate(stack_b) == -1)
 		return (-1);
-	ft_printf("rrb");
+	ft_printf("rrb\n");
 	return (0);
 }
 
@@ -46,6 +46,6 @@ int	rrr(t_stack **stack_a, t_stack **stack_b)
 		return (-1);
 	reverse_rotate(stack_a);
 	reverse_rotate(stack_b);
-	ft_printf("rrr");
+	ft_printf("rrr\n");
 	return (0);
 }

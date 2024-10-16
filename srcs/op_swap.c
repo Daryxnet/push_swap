@@ -26,7 +26,7 @@ int	sa(t_stack **stack_a)
 {
 	if (swap(stack_a) == -1)
 		return (-1);
-	ft_printf("sa");
+	ft_printf("sa\n");
 	return (0);
 }
 
@@ -34,7 +34,7 @@ int	sb(t_stack **stack_b)
 {
 	if (swap(stack_b) == -1)
 		return (-1);
-	ft_printf("sb");
+	ft_printf("sb\n");
 	return (0);
 }
 
@@ -44,6 +44,6 @@ int	ss(t_stack **stack_a, t_stack **stack_b)
 		return (-1);
 	swap(stack_a);
 	swap(stack_b);
-	ft_printf("ss");
+	ft_printf("ss\n");
 	return (0);
 }

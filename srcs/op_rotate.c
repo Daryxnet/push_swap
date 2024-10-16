@@ -20,7 +20,7 @@ int	ra(t_stack **stack_a)
 {
 	if (rotate(stack_a) == -1)
 		return (-1);
-	ft_printf("ra");
+	ft_printf("ra\n");
 	return (0);
 }
 
@@ -28,7 +28,7 @@ int	rb(t_stack **stack_b)
 {
 	if (rotate(stack_b) == -1)
 		return (-1);
-	ft_printf("rb");
+	ft_printf("rb\n");
 	return (0);
 }
 
@@ -38,6 +38,6 @@ int	rr(t_stack **stack_a, t_stack **stack_b)
 		return (-1);
 	rotate(stack_a);
 	rotate(stack_b);
-	ft_printf("rr");
+	ft_printf("rr\n");
 	return (0);
 }

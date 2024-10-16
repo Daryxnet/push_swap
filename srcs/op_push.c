@@ -32,7 +32,7 @@ int	pa(t_stack **stack_a, t_stack **stack_b)
 {
 	if (push(stack_a, stack_b) == -1)
 		return (-1);
-	ft_printf("pa");
+	ft_printf("pa\n");
 	return (0);
 }
 
@@ -40,6 +40,6 @@ int	pb(t_stack **stack_a, t_stack **stack_b)
 {
 	if (push(stack_b, stack_a) == -1)
 		return (-1);
-	ft_printf("pb");
+	ft_printf("pb\n");
 	return (0);
 }
