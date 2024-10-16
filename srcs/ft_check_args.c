@@ -58,11 +58,11 @@ void	ft_check_args(int argc, char **argv)
 	{
 		tmp = ft_atoi(args[i]);
 		if (!is_numeric(args[i]))
-			ft_printf("Error: Invalid argument. Expected a number.");
+			ft_printf("Error");
 		if (is_duplicate(tmp, args, i))
-			ft_printf("Error: Duplicate number found.");
+			ft_printf("Error");
 		if (tmp < -2147483648 || tmp > 2147483647)
-			ft_printf("Error: Number out of the allowed range");
+			ft_printf("Error");
 		i++;
 	}
 	if (argc == 2)

@@ -14,7 +14,8 @@ NAME = push_swap
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iincludes
-SRCS = srcs/main.c srcs/operations.c srcs/stack_utils.c srcs/ft_check_args.c \
+SRCS = srcs/main.c srcs/op_push.c srcs/op_reverse_r.c srcs/op_rotate.c \
+       srcs/op_swap.c srcs/stack_utils.c srcs/ft_check_args.c \
 	   srcs/ft_index.c srcs/ft_extras.c srcs/radix_sort.c \
 	   srcs/sort_small_stack.c
 LIBFT_DIR = Libft
