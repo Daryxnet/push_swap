@@ -6,12 +6,11 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:40:12 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/17 14:59:59 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:34:27 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static void	init_stack(t_stack **stack, int argc, char **argv)
 {
@@ -59,7 +58,6 @@ int	main(int argc, char **argv)
 	*stack_a = NULL;
 	*stack_b = NULL;
 	init_stack(stack_a, argc, argv);
-	//print_stacks(*stack_a, *stack_b);
 	if (is_in_order(stack_a))
 	{
 		free_stack(stack_a);
@@ -67,7 +65,6 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	sort_stack(stack_a, stack_b);
-	//print_stacks(*stack_a, *stack_b);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);
