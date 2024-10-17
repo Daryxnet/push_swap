@@ -6,7 +6,7 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:54:07 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/15 12:23:43 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:01:13 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,8 @@ static void	sort_3(t_stack **stack_a)
 	next_min = get_min(stack_a, min);
 	if (is_in_order(stack_a))
 		return ;
-	if (head->index == min && head->next->index != next_min)
-	{
-		ra(stack_a);
-		sa(stack_a);
-		rra(stack_a);
-	}
-	else if (head->index == next_min)
-	{
-		if (head->next->index == min)
-			sa(stack_a);
-		else
-			rra(stack_a);
-	}
 	else
-	{
-		if (head->next->index == min)
-			ra(stack_a);
-		else
-		{
-			sa(stack_a);
-			rra(stack_a);
-		}
-	}
+		cond_sort3(head, min, next_min, stack_a);
 }
 
 static void	sort_4(t_stack **stack_a, t_stack **stack_b)

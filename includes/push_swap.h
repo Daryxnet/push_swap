@@ -6,7 +6,7 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:07:23 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/15 12:40:27 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:02:56 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../Libft/includes/get_next_line.h"
 # include "../Libft/includes/ft_printf.h"
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	int				value;
 	int				index;
@@ -27,7 +27,7 @@ typedef struct	s_stack
 }					t_stack;
 
 // Declaraciones de funciones
-void    print_stacks(t_stack *stack_a, t_stack *stacck_b);
+void	print_stacks(t_stack *stack_a, t_stack *stacck_b);
 void	ft_check_args(int argc, char **argv);
 void	index_stack(t_stack **stack);
 int		is_in_order(t_stack **stack);
@@ -36,23 +36,24 @@ void	free_stack(t_stack **stack);
 void	sort_small_stack(t_stack **stack_a, t_stack **stack_b);
 void	radix_sort(t_stack **stack_a, t_stack **stack_b);
 int		get_distance(t_stack **stack, int index);
+void	cond_sort3(t_stack *head, int min, int next_min, t_stack **stack_a);
 
 // Operaciones básicas de las stack
-int	swap(t_stack **stack);
-int	sa(t_stack **stack_a);
-int	sb(t_stack **stack_b);
-int	ss(t_stack **stack_a, t_stack **stack_b);
-int	push(t_stack **stack_to, t_stack **stack_from);
-int	pa(t_stack **stack_a, t_stack **stack_b);
-int	pb(t_stack **stack_a, t_stack **stack_b);
-int	rotate(t_stack **stack);
-int	ra(t_stack **stack_a);
-int	rb(t_stack **stack_b);
-int	rr(t_stack **stack_a, t_stack **stack_b);
-int	reverseRotate(t_stack **stack);
-int	rra(t_stack **stack_a);
-int	rrb(t_stack **stack_b);
-int	rrr(t_stack **stack_a, t_stack **stack_b);
+int		swap(t_stack **stack);
+int		sa(t_stack **stack_a);
+int		sb(t_stack **stack_b);
+int		ss(t_stack **stack_a, t_stack **stack_b);
+int		push(t_stack **stack_to, t_stack **stack_from);
+int		pa(t_stack **stack_a, t_stack **stack_b);
+int		pb(t_stack **stack_a, t_stack **stack_b);
+int		rotate(t_stack **stack);
+int		ra(t_stack **stack_a);
+int		rb(t_stack **stack_b);
+int		rr(t_stack **stack_a, t_stack **stack_b);
+int		reverseRotate(t_stack **stack);
+int		rra(t_stack **stack_a);
+int		rrb(t_stack **stack_b);
+int		rrr(t_stack **stack_a, t_stack **stack_b);
 
 // Funciones auxiliares
 t_stack	*ft_lstnew(int value);
@@ -62,4 +63,3 @@ void	ft_lstadd_back(t_stack **stack, t_stack *new);
 int		ft_lstsize(t_stack *head);
 
 #endif
-

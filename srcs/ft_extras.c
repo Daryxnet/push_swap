@@ -6,7 +6,7 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:29:22 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/15 12:42:18 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:21:33 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,38 +25,6 @@ int	is_in_order(t_stack **stack)
 		head = head->next;
 	}
 	return (1);
-}
-
-void	free_stack(t_stack **stack)
-{
-	t_stack	*head;
-	t_stack	*tmp;
-
-	head = *stack;
-	while (head)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp);
-	}
-	free(stack);
-}
-
-int	get_distance(t_stack **stack, int index)
-{
-	t_stack	*head;
-	int		distance;
-
-	distance = 0;
-	head = *stack;
-	while (head)
-	{
-		if (head->index == index)
-			break ;
-		distance++;
-		head = head->next;
-	}
-	return (distance);
 }
 
 void	make_top(t_stack **stack, int distance)
@@ -80,33 +48,23 @@ void	make_top(t_stack **stack, int distance)
 	}
 }
 
-void	ft_free(char **str)
+void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 {
-	int	i;
+	t_stack	*current_a;
+	t_stack	*current_b;
 
-	i = 0;
-	while (str[i])
-		i++;
-	while (i >= 0)
-		free(str[i--]);
-}
-
-void print_stacks(t_stack *stack_a, t_stack *stack_b)
-{
-    t_stack *current_a = stack_a;
-    t_stack *current_b = stack_b;
-
-    printf("Stack A:\n");
-    while (current_a)
-    {
-        printf("%d\n", current_a->value); // Asumiendo que el valor es un entero.
-        current_a = current_a->next;
-    }
-
-    printf("Stack B:\n");
-    while (current_b)
-    {
-        printf("%d\n", current_b->value); // Asumiendo que el valor es un entero.
-        current_b = current_b->next;
-    }
+	current_a = stack_a;
+	current_b = stack_b;
+	ft_printf("Stack A:\n");
+	while (current_a)
+	{
+		ft_printf("%d\n", current_a->value);
+		current_a = current_a->next;
+	}
+	ft_printf("Stack B:\n");
+	while (current_b)
+	{
+		ft_printf("%d\n", current_b->value);
+		current_b = current_b->next;
+	}
 }
