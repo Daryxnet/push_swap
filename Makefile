@@ -6,7 +6,7 @@
 #    By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/23 11:09:59 by dagarmil          #+#    #+#              #
-#    Updated: 2024/10/17 13:05:29 by dagarmil         ###   ########.fr        #
+#    Updated: 2024/10/17 15:23:13 by dagarmil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,5 +47,24 @@ fclean: clean
 
 re: fclean all
 
+test:
+	@NUM_QTY=100; \
+    MAX_MOVES=700; \
+    ARG=$$(shuf -i 0-5000000 -n $$NUM_QTY); \
+    RESULT=$$(./$(NAME) $$ARG | ./checker_linux $$ARG); \
+    if [ "$$RESULT" = "OK" ]; then \
+        COLOR="\033[0;32m"; \
+    else \
+        COLOR="\033[0;31m"; \
+    fi; \
+    echo "󱝿⚙️ Checker verify: $$COLOR$$RESULT\033[0m"; \
+    echo -n "🔢 Num of moves:    "; \
+    NUM_MOVES=$$(./$(NAME) $$ARG | wc -l); \
+    if [ $$NUM_MOVES -lt $$MAX_MOVES ]; then \
+        COLOR="\033[0;32m"; \
+    else \
+        COLOR="\033[0;31m"; \
+    fi; \
+    echo "$$COLOR$$NUM_MOVES\033[0m"
 .PHONY: all clean fclean re
 
