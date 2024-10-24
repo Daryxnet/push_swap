@@ -6,7 +6,7 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:07:23 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/17 13:02:56 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/24 12:28:24 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-// Declaraciones de funciones
 void	print_stacks(t_stack *stack_a, t_stack *stacck_b);
 void	ft_check_args(int argc, char **argv);
+void	ft_error(char *error);
 void	index_stack(t_stack **stack);
 int		is_in_order(t_stack **stack);
 void	ft_free(char **str);
@@ -38,7 +38,6 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b);
 int		get_distance(t_stack **stack, int index);
 void	cond_sort3(t_stack *head, int min, int next_min, t_stack **stack_a);
 
-// Operaciones básicas de las stack
 int		swap(t_stack **stack);
 int		sa(t_stack **stack_a);
 int		sb(t_stack **stack_b);
@@ -55,7 +54,6 @@ int		rra(t_stack **stack_a);
 int		rrb(t_stack **stack_b);
 int		rrr(t_stack **stack_a, t_stack **stack_b);
 
-// Funciones auxiliares
 t_stack	*ft_lstnew(int value);
 void	ft_lstadd_front(t_stack **stack, t_stack *new);
 t_stack	*ft_lstlast(t_stack *head);

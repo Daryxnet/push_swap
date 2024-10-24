@@ -6,7 +6,7 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:29:22 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/17 12:21:33 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/24 12:27:54 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,10 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 		ft_printf("%d\n", current_b->value);
 		current_b = current_b->next;
 	}
+}
+
+void	ft_error(char *error)
+{
+	ft_putendl_fd(error, 1);
+	exit (0);
 }

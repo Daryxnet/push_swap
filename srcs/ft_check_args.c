@@ -6,7 +6,7 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 10:39:01 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/15 10:53:05 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/24 12:29:39 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void	ft_check_args(int argc, char **argv)
 	{
 		tmp = ft_atoi(args[i]);
 		if (!is_numeric(args[i]))
-			ft_printf("Error");
+			ft_error("Error");
 		if (is_duplicate(tmp, args, i))
-			ft_printf("Error");
+			ft_error("Error");
 		if (tmp < -2147483648 || tmp > 2147483647)
-			ft_printf("Error");
+			ft_error("Error");
 		i++;
 	}
 	if (argc == 2)
