@@ -6,7 +6,7 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 10:39:01 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/24 12:29:39 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:09:13 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	is_numeric(char *num)
 void	ft_check_args(int argc, char **argv)
 {
 	int		i;
-	long	tmp;
+	int		tmp;
 	char	**args;	
 
 	i = 0;
@@ -61,7 +61,7 @@ void	ft_check_args(int argc, char **argv)
 			ft_error("Error");
 		if (is_duplicate(tmp, args, i))
 			ft_error("Error");
-		if (tmp < -2147483648 || tmp > 2147483647)
+		if (!(int_error(args[i])))
 			ft_error("Error");
 		i++;
 	}

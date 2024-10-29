@@ -6,12 +6,11 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:29:22 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/24 12:27:54 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:19:19 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	is_in_order(t_stack **stack)
 {
@@ -73,4 +72,21 @@ void	ft_error(char *error)
 {
 	ft_putendl_fd(error, 1);
 	exit (0);
+}
+
+int	int_error(char *args)
+{
+	if (args[0] == '-')
+	{
+		if (ft_strlen(args) > 11 || (ft_strlen(args) == 11
+				&& ft_strncmp(args, "-2147483648", 11) > 0))
+			return (0);
+	}
+	else
+	{
+		if (ft_strlen(args) > 10 || (ft_strlen(args) == 10
+				&& ft_strncmp(args, "2147483647", 10) > 0))
+			return (0);
+	}
+	return (1);
 }

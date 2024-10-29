@@ -6,7 +6,7 @@
 /*   By: dagarmil <dagarmil@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:07:23 by dagarmil          #+#    #+#             */
-/*   Updated: 2024/10/24 12:28:24 by dagarmil         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:05:51 by dagarmil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	sort_small_stack(t_stack **stack_a, t_stack **stack_b);
 void	radix_sort(t_stack **stack_a, t_stack **stack_b);
 int		get_distance(t_stack **stack, int index);
 void	cond_sort3(t_stack *head, int min, int next_min, t_stack **stack_a);
+int		int_error(char *args);
 
 int		swap(t_stack **stack);
 int		sa(t_stack **stack_a);
